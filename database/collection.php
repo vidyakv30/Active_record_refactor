@@ -16,13 +16,9 @@ use \connection\dbConn as dbConn;
             $tableName = self::getClassNameWithoutNamespace(get_called_class());
             $sql       = "SELECT * from " . $tableName;
             $statement = $db->prepare($sql);
-
-            echo "<br>SQL: $sql <br>";
             $statement->execute();
             $class = static::$modelName;
-            echo "<br>Class: $class <br>";
             $statement->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__ ."\\".$class);
-            echo "<br>Statement: $class <br>";
             $recordSet = $statement->fetchAll();
             return $recordSet;
         }

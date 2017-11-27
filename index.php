@@ -1,5 +1,4 @@
 <?php
-// namespace myCrudApp;
 
 use database\accounts as accounts;
 use database\account as account;
@@ -16,9 +15,7 @@ use view\output as output;
    //  {
         function my_autoloader($class)
         {
-            echo "$class <br/>";
             $class = str_replace ('\\', '/', $class) . '.php';
-            echo "$class <br/>";
             include ($class);
         }
     // }
@@ -47,7 +44,6 @@ spl_autoload_register('my_autoloader');
     $outputVar = new output();
     $outputVar->templateGenerator('SELECT', $id, tableClass::populateTable($record));
     array_push($outputArray, $outputVar);
-    echo "here first";
     $newAccount           = new account;
     $newAccount->email    = "janedoe121@gmail.com";+
     $newAccount->fname    = "Jane";
@@ -63,7 +59,6 @@ spl_autoload_register('my_autoloader');
 
     $outputVar->templateGenerator("INSERT", $newAccount, tableClass::populateTable($insertedAccounts));
     array_push($outputArray, $outputVar);
-    echo "here";
     $updateAccount        = new account();
     $updateAccount->id    = $newID;
     $updateAccount->email = "doe007@gmail.com";
