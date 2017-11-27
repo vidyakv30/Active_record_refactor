@@ -1,7 +1,7 @@
 <?php
 namespace database;
 
- class todos extends collection
+ final class todos extends collection
     {
         protected static $modelName = 'todo';
     }

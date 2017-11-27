@@ -43,7 +43,7 @@ use \connection\dbConn as dbConn;
             return $record;
         }
 
-        public static function getClassNameWithoutNamespace($tableName) {
+         public static function getClassNameWithoutNamespace($tableName) {
          $path = explode('\\', $tableName);
          return array_pop($path);
         } 

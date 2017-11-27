@@ -6,7 +6,7 @@ namespace database;
     */
     abstract class model
     {
-
+        
         protected $tableName;
         protected static $statement;
         /* 
