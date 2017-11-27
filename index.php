@@ -1,13 +1,38 @@
-    <?php
+<?php
+// namespace myCrudApp;
+
+use database\accounts as accounts;
+use database\account as account;
+use database\todos as todos;
+use database\todo as todo;
+use view\tableClass as tableClass;
+use view\output as output;
 
     ini_set('display_errors', 'On');
     error_reporting(E_ALL);
     echo '<link rel="stylesheet" href="styles.css" type="text/css">';
-   
+
+   // class Manage
+   //  {
+        function my_autoloader($class)
+        {
+            echo "$class <br/>";
+            $class = str_replace ('\\', '/', $class) . '.php';
+            echo "$class <br/>";
+            include ($class);
+        }
+    // }
+    
+spl_autoload_register('my_autoloader');
+
+
+
+    //$a = new accounts();
+    
+       
    
     $outputArray = array();
     echo "<h1>'accounts' Table</h1>";
-
 
      /*
     * Method Calls to perform CRUD operations on accounts table
@@ -22,8 +47,8 @@
     $outputVar = new output();
     $outputVar->templateGenerator('SELECT', $id, tableClass::populateTable($record));
     array_push($outputArray, $outputVar);
-
-    $newAccount           = new account();
+    echo "here first";
+    $newAccount           = new account;
     $newAccount->email    = "janedoe121@gmail.com";+
     $newAccount->fname    = "Jane";
     $newAccount->lname    = "Doe";
@@ -38,7 +63,7 @@
 
     $outputVar->templateGenerator("INSERT", $newAccount, tableClass::populateTable($insertedAccounts));
     array_push($outputArray, $outputVar);
-
+    echo "here";
     $updateAccount        = new account();
     $updateAccount->id    = $newID;
     $updateAccount->email = "doe007@gmail.com";

@@ -1,4 +1,5 @@
 <?php
+namespace view;
 
      /*
     * Template Class  to output  the results

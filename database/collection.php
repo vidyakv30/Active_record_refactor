@@ -1,4 +1,7 @@
 <?php
+namespace database;
+use \PDO ;
+use \connection\dbConn as dbConn;
    /* 
     *Abstrcat class  to select record(s) from a table
     */
@@ -10,12 +13,16 @@
         public static function getRecordSet()
         {
             $db        = dbConn::getConnection();
-            $tableName = get_called_class();
+            $tableName = self::getClassNameWithoutNamespace(get_called_class());
             $sql       = "SELECT * from " . $tableName;
             $statement = $db->prepare($sql);
+
+            echo "<br>SQL: $sql <br>";
             $statement->execute();
             $class = static::$modelName;
-            $statement->setFetchMode(PDO::FETCH_CLASS, $class);
+            echo "<br>Class: $class <br>";
+            $statement->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__ ."\\".$class);
+            echo "<br>Statement: $class <br>";
             $recordSet = $statement->fetchAll();
             return $recordSet;
         }
@@ -26,14 +33,20 @@
         public static function getOneRecord($id)
         {
             $db        = dbConn::getConnection();
-            $tableName = get_called_class();
+            $tableName = self::getClassNameWithoutNamespace(get_called_class())   ;
             $sql       = "SELECT * from " . $tableName . " WHERE id = $id";
             $statement = $db->prepare($sql);
             $statement->execute();
             $class = static::$modelName;
-            $statement->setFetchMode(PDO::FETCH_CLASS, $class);
+            $statement->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__."\\".$class);
             $record = $statement->fetchAll();
             return $record;
         }
+
+        public static function getClassNameWithoutNamespace($tableName) {
+         $path = explode('\\', $tableName);
+         return array_pop($path);
+        } 
+
     }
 ?>

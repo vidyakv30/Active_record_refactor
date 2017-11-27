@@ -1,5 +1,6 @@
 <?php
-
+namespace database;
+    use \connection\dbConn as dbConn;
     /* 
     *Abstract class model to perform INSERT,UPDATE & DELETE operations in a table
     */

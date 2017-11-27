@@ -1,5 +1,5 @@
-
 <?php
+namespace database;
     class account extends model
     {
 

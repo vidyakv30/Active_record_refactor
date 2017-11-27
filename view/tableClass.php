@@ -1,4 +1,5 @@
 <?php
+namespace view;
     /*
     * Class to prepare HTML table definition
     */
